@@ -9,7 +9,7 @@ export const Home = () => {
   const [isInEn, setIsInEn] = useState(true);
 
   const onClickStartGame = () => {
-    
+    navigate("/gamePage",{state: {userName,gameType,isInEn}})
   };
 
   const onChangeLang = (lang: string) => {
@@ -53,13 +53,13 @@ export const Home = () => {
             className="rounded-full w-full p-2 text-[#000000]"
             onChange={(e) => setGameType(e.target.value)}
           >
-            <option selected value="Black jack">
+            <option value="Black jack">
               {isInEn ? "Black jack" : "ブラックジャック"}
             </option>
           </select>
         </div>
         <div className="flex justify-center">
-          <Button buttonType="green" mediaQueries="p-4">
+          <Button buttonType="green" mediaQueries="p-4" onClick={()=>onClickStartGame()}>
             {isInEn ?  "Start a game !" : "ゲームスタート！"}
           </Button>
         </div>

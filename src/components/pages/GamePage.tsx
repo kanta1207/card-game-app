@@ -1,6 +1,6 @@
 
 export const GamePage = () => {
   return (
-    <div>GamePage</div>
+    <div className="bg-[#1D4434] h-screen text-[#ffffff]">GamePage</div>
   )
 }

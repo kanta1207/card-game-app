@@ -4,7 +4,8 @@ type Props = {
   children: ReactNode;
   buttonType: "green" | "red" | "yellow" | "white";
   mediaQueries: string;
-} & Omit<ComponentProps<"button">, "className">;
+  onClick : ()=>void;
+};
 
 const buttonTypeMap = new Map<string, string>([
   ["green", "bg-[#28A745] text-[#ffffff]"],
@@ -15,17 +16,13 @@ const buttonTypeMap = new Map<string, string>([
 
 const baseStyle = "rounded-full flex items-center hover:opacity-80 hover:translate--y-1";
 
-export const Button: FC<Props> = ({
-  children,
-  buttonType,
-  mediaQueries,
-  ...props
-}) => {
+export const Button: FC<Props> = (props) => {
+  const {children,buttonType,mediaQueries,onClick} = props;
   return (
     <button
       className={`${baseStyle} , ${buttonTypeMap.get(
         buttonType
-      )} ${mediaQueries} `}
+      )} ${mediaQueries} `} onClick={()=>onClick()}
     >
       {children}
     </button>
