@@ -1,27 +1,17 @@
-class Card {
-    public rank : string;
-    public suit: string;
+import { Card } from "./card";
 
-    constructor(rank : string,suit : string){
-        this.rank = rank;
-        this.suit = suit;
-    };
-
-    public printRankAndSuit() : string{
-        return this.rank + this.suit
-    };
-};
-
-class Deck {
-    public static readonly SUITS = ["♠","♡","♢","♣"];
+export class Deck {
+    public static readonly SUITS = ["S","H","D","C"];
     public static readonly RANKS = ["A","2","3","4","5","6","7","8","9","10","J","Q","K"];
     public cards : Card[];
+    public jokerNum : number
 
-    constructor(){
-        this.cards =  Deck.createDeck();
+    constructor(jokerNum : number){
+        this.cards =  Deck.createDeck(jokerNum);
+        this.jokerNum = jokerNum;
     };
 
-    public static createDeck() : Card[]{
+    public static createDeck(jokerNum : number) : Card[]{
         const s = Deck.SUITS.length;
         const r = Deck.RANKS.length;
         
@@ -32,6 +22,12 @@ class Deck {
                 cards.push(new Card(Deck.SUITS[s],Deck.RANKS[r]))
             }
         };
+
+        for(let i = 0; i < jokerNum; i++){
+            let joker = new Card("Joker","Joker")
+            cards.push(joker);
+        };
+
         return cards;
     };
 
@@ -47,4 +43,16 @@ class Deck {
            this.cards[randomIndex] = temp;
         }
     }
+
+    public drawOne(){
+        return this.cards[0];
+    };
+
+    public resetDeck(){
+        this.cards = Deck.createDeck(this.jokerNum);
+    }
+};
+
+export class BlackJackDeck extends Deck{
+
 }
