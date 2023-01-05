@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { gameTypeArray } from "../../class/gameType";
 import { Button } from "../atoms/Button";
 
 export const Home = () => {
   const navigate = useNavigate();
   const [userName, setUserName] = useState("");
-  const [gameType, setGameType] = useState("");
+  const [gameTypeIndex, setGameTypeIndex] = useState(0);
   const [isInEn, setIsInEn] = useState(true);
 
   const onClickStartGame = () => {
-    navigate("/gamePage",{state: {userName,gameType,isInEn}})
+    navigate(gameTypeArray[gameTypeIndex].pagePath,{state : {userName,isInEn,gameType : gameTypeArray[gameTypeIndex]}})
   };
 
   const onChangeLang = (lang: string) => {
@@ -51,11 +52,13 @@ export const Home = () => {
           <select
             name="gameType"
             className="rounded-full w-full p-2 text-[#000000]"
-            onChange={(e) => setGameType(e.target.value)}
+            onChange={(e) => setGameTypeIndex(Number(e.target.value))}
           >
-            <option value="Black jack">
-              {isInEn ? "Black jack" : "ブラックジャック"}
+            {gameTypeArray.map((gameType,index)=>(
+              <option value={index} key={gameType.gameNameEn}>
+              {isInEn ? gameType.gameNameEn : gameType.gameNameJa}
             </option>
+            ))}
           </select>
         </div>
         <div className="flex justify-center">
