@@ -1,14 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { BrowserRouter } from 'react-router-dom';
-import { Router } from './Router';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { BrowserRouter } from "react-router-dom";
+import { Router } from "./Router";
+import { RecoilRoot } from "recoil";
 
 function App() {
   return (
-    <BrowserRouter>
-    <Router/>
-    </BrowserRouter>
+    <RecoilRoot>
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
+    </RecoilRoot>
   );
 }
 

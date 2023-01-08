@@ -5,14 +5,35 @@ export class Player {
     public name : string;
     public type : "user" | "ai" | "house";
     public gameType : GameType;
-    public chips = 400;
+    public chips : number;
+    public bet : number;
     public hand : Card[] = []
+    public status = ""
+
 
     constructor(name : string,type : "user" | "ai" | "house",gameType : GameType){
         this.name = name;
         this.type = type;
         this.gameType = gameType;
+        this.chips = 400;
+        this.bet = 0;
     };
+
+    public setBet(bet : number){
+        this.bet = bet;
+    };
+
+
+    public makeRandomBet(){
+        if(this.chips > 400)this.setBet(100);
+        if(this.chips >= 300)this.setBet(50);
+        if(this.chips >= 200)this.setBet(20);
+        else this.setBet(5);
+    };
+
+    public setStatus(status : string) : void{
+        this.status = status;
+    }
 
     public getHandScoreInBlackJack() : number{
         let score = 0;

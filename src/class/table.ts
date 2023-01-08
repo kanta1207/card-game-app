@@ -9,8 +9,7 @@ export class Table  {
     public player2 : Player;
     public player3 : Player;
     public player4 : Player;
-    public gamePhase : "betting" | "action" | "result";
-    public players : Player[]
+    public gameLog = ""
 
     constructor(gameType : GameType,userName : string){
         this.gameType = gameType;
@@ -19,13 +18,13 @@ export class Table  {
         this.player2 = new Player(userName,"user",gameType);
         this.player3 = new Player("AI3","ai",gameType);
         this.player4 = gameType.isHouseIn ? new Player("House","house",gameType) : new Player("AI2","ai",gameType);
-        this.gamePhase = "betting";
-        this.players = [this.player1,this.player2,this.player3,this.player4];
     };
 
-    public setGamePhase(gamePhase : "betting" | "action" | "result") : void{
-        if(this.gamePhase!==gamePhase)this.gamePhase = gamePhase;
-    };
+    public makeAIBets = () => {
+        this.player1.makeRandomBet();
+        this.player3.makeRandomBet();
+       if(!this.gameType.isHouseIn)this.player4.makeRandomBet();
+    }
 
     public distributeCards(){
         //shuffle the deck first.
@@ -42,6 +41,4 @@ export class Table  {
         if(this.gameType.isHouseIn)initialHand = this.gameType.initialHouseHand;
         this.deck.drawCards(this.player4,initialHand)
     };
-
-
 };

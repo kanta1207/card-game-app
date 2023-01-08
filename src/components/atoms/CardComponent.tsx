@@ -6,31 +6,31 @@ import {
   BsFillSuitSpadeFill,
 } from "react-icons/bs";
 import {GiClown} from  "react-icons/gi"
+import { Card } from "../../class/card";
 
 type Props = {
-  rank: string;
-  suit: "H" | "D" | "S" | "C" | "Joker";
+  card : Card
 };
 
 let suitHash = {
-  "H": <BsFillSuitHeartFill size="3rem" color="#E91C25" />,
-  "D": <BsFillSuitDiamondFill size="3rem" color="#E91C25" />,
-  "S": <BsFillSuitSpadeFill size="3rem" color="#000000" />,
-  "C": <BsFillSuitClubFill size="3rem" color="#000000" />,
-  "Joker" : <GiClown size="3rem" color="#000000"/>
+  "H": <BsFillSuitHeartFill color="#E91C25" />,
+  "D": <BsFillSuitDiamondFill  color="#E91C25" />,
+  "S": <BsFillSuitSpadeFill color="#000000" />,
+  "C": <BsFillSuitClubFill  color="#000000" />,
+  "Joker" : <GiClown size="2rem" color="#000000"/>
 };
 
 export const CardComponent: FC<Props> = (props) => {
-  const { rank, suit } = props;
+  const { card } = props;
   return (
-    <div className="bg-[#ffffff] rounded-sm text-center p-4">
+    <div className="bg-[#ffffff] rounded-sm text-center p-2">
       <div
         className={`${
-          suit === "H" || suit === "D" ? "text-[#E91C25]" : "text-[#000000]"
+          card.suit === "H" || card.suit === "D" ? "text-[#E91C25]" : "text-[#000000]"
         } space-y-2`}
       >
-        {suitHash[suit]}
-        <p className="font-bold">{rank}</p>
+        {suitHash[card.suit]}
+        <p className="font-bold">{card.rank}</p>
       </div>
     </div>
   );

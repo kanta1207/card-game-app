@@ -1,4 +1,4 @@
-import { Player } from './player';
+import { Player } from "./player";
 import { Card } from "./card";
 import { GameType } from "./gameType";
 
@@ -22,12 +22,12 @@ export class Deck {
   public cards: Card[];
   public gameType: GameType;
 
-  constructor(gameType : GameType) {
+  constructor(gameType: GameType) {
     this.cards = Deck.createDeck(gameType);
-    this.gameType = gameType
+    this.gameType = gameType;
   }
 
-  public static createDeck(gameType : GameType): Card[] {
+  public static createDeck(gameType: GameType): Card[] {
     const s = Deck.SUITS.length;
     const r = Deck.RANKS.length;
 
@@ -35,7 +35,25 @@ export class Deck {
 
     for (let i = 0; i < s; i++) {
       for (let j = 0; j < r; j++) {
-        cards.push(new Card(Deck.SUITS[s], Deck.RANKS[r]));
+        cards.push(
+          new Card(
+            Deck.RANKS[j] as
+              | "A"
+              | "2"
+              | "3"
+              | "4"
+              | "5"
+              | "6"
+              | "7"
+              | "8"
+              | "9"
+              | "10"
+              | "J"
+              | "Q"
+              | "K",
+            Deck.SUITS[i] as "H" | "D" | "S" | "C"
+          )
+        );
       }
     }
 
@@ -60,18 +78,18 @@ export class Deck {
     }
   }
 
-  public drawOne() : Card | undefined{
-    if(this.cards[0] === undefined){
-        alert("There aren`t any more cards.");
-        return;
+  public drawOne(): Card | undefined {
+    if (this.cards[0] === undefined) {
+      alert("There aren`t any more cards.");
+      return;
     }
     return this.cards.pop();
   }
 
-  public drawCards(player : Player,num : number) : void{
-    for(let i = 0; i < num; i++){
-        const card = this.drawOne();
-        if(card !== undefined)player.hand.push(card)
+  public drawCards(player: Player, num: number): void {
+    for (let i = 0; i < num; i++) {
+      const card = this.drawOne();
+      if (card !== undefined) player.hand.push(card);
     }
   }
 

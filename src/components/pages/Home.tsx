@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 import { gameTypeArray } from "../../class/gameType";
+import { gamePhaseAtom } from "../../recoil/atom/gamePhaseAtom";
 import { Button } from "../atoms/Button";
 
 export const Home = () => {
@@ -8,8 +10,10 @@ export const Home = () => {
   const [userName, setUserName] = useState("");
   const [gameTypeIndex, setGameTypeIndex] = useState(0);
   const [isInEn, setIsInEn] = useState(true);
+  const setGamePhase = useSetRecoilState(gamePhaseAtom)
 
   const onClickStartGame = () => {
+    setGamePhase("betting")
     navigate(gameTypeArray[gameTypeIndex].pagePath,{state : {userName,isInEn,gameType : gameTypeArray[gameTypeIndex]}})
   };
 
@@ -29,7 +33,7 @@ export const Home = () => {
             className="rounded-full w-full py-2 text-[#000000]"
             onChange={(e) => onChangeLang(e.target.value)}
           >
-            <option selected value="English">
+            <option value="English">
               English
             </option>
             <option value="Japanese">日本語</option>
