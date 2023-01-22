@@ -1,4 +1,3 @@
-import { Player } from "./player";
 import { Card } from "./card";
 import { GameType } from "./gameType";
 
@@ -31,11 +30,11 @@ export class Deck {
     const s = Deck.SUITS.length;
     const r = Deck.RANKS.length;
 
-    const cards: Card[] = [];
+    const deck: Card[] = [];
 
     for (let i = 0; i < s; i++) {
       for (let j = 0; j < r; j++) {
-        cards.push(
+        deck.push(
           new Card(
             Deck.RANKS[j] as
               | "A"
@@ -51,18 +50,21 @@ export class Deck {
               | "J"
               | "Q"
               | "K",
-            Deck.SUITS[i] as "H" | "D" | "S" | "C"
+            Deck.SUITS[i] as "H" | "D" | "S" | "C",gameType.isCardOpen
           )
         );
       }
     }
 
+    //add jokers if they`re needed
     for (let i = 0; i < gameType.jokerNum; i++) {
-      let joker = new Card("Joker", "Joker");
-      cards.push(joker);
-    }
+      let joker = new Card("Joker", "Joker",gameType.isCardOpen);
+      deck.push(joker);
+    };
 
-    return cards;
+
+
+    return deck;
   }
 
   public shuffleDeck(): void {
@@ -86,12 +88,6 @@ export class Deck {
     return this.cards.pop();
   }
 
-  public drawCards(player: Player, num: number): void {
-    for (let i = 0; i < num; i++) {
-      const card = this.drawOne();
-      if (card !== undefined) player.hand.push(card);
-    }
-  }
 
   public resetDeck() {
     this.cards = Deck.createDeck(this.gameType);

@@ -15,6 +15,7 @@ export class Card {
     | "K"
     | "Joker";
   public suit: "H" | "D" | "S" | "C" | "Joker";
+  public isOpen : boolean
 
   constructor(
     rank:
@@ -32,15 +33,24 @@ export class Card {
       | "Q"
       | "K"
       | "Joker",
-    suit: "H" | "D" | "S" | "C" | "Joker"
+    suit: "H" | "D" | "S" | "C" | "Joker",isOpen : boolean
   ) {
     this.rank = rank;
     this.suit = suit;
+    this.isOpen = isOpen
   }
 
   public getRankNumberInBlackJack(): number {
     if (this.rank === "J" || "Q" || "K") return 10;
     else if (this.rank === "A") return 11;
     else return parseInt(this.rank);
+  };
+
+  public open(){
+    this.isOpen = true;
+  };
+
+  public close(){
+    this.isOpen = false;
   }
 }

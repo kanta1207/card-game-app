@@ -16,7 +16,7 @@ const buttonTypeMap = new Map<string, string>([
 ]);
 
 const baseStyle =
-  "rounded-full items-center hover:opacity-80 hover:-translate-y-0.5 font-bold";
+  "rounded-full items-center hover:opacity-80 font-bold";
 
 export const Button: FC<Props> = (props) => {
   const { children, buttonType, mediaQueries, onClick } = props;
