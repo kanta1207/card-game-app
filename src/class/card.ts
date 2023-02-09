@@ -41,7 +41,9 @@ export class Card {
   }
 
   public getRankNumberInBlackJack(): number {
-    if (this.rank === "J" || "Q" || "K") return 10;
+    if (this.rank === "J" || this.rank ===  "Q" || this.rank === "K") {
+      return 10;
+    }
     else if (this.rank === "A") return 11;
     else return parseInt(this.rank);
   };

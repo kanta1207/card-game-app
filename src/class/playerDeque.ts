@@ -3,9 +3,6 @@ import { NonHousePlayer } from './player';
 export class PlayerDeque {
     public head : NonHousePlayer | null = null;
     public tail : NonHousePlayer | null = null;
-    public currentPlayer : NonHousePlayer | null = null;
-
-    
 
     peekFront() : NonHousePlayer | null{
         if(this.head == null) return null;
@@ -46,7 +43,7 @@ export class PlayerDeque {
 
         let temp = this.head;
         this.head = this.head.nextPlayer;
-        if(this.head == null) this.tail = null;
+        if(this.head == null) this.tail = null
         else this.head.prevPlayer = null;
         return temp;
     }
