@@ -9,7 +9,7 @@ type Props = {
 export const BlackJackTableComponent : FC<Props> = (props) => {
     const {table} = props;
     return (
-        <div className="h-full">
+        <div className="h-full w-full">
             <div className="flex justify-center">
             <HousePlayerComponent player={table.house} />
           </div>

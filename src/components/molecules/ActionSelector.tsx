@@ -18,7 +18,7 @@ export const ActionSelector: FC<Props> = (props) => {
       <div className="flex justify-center space-x-3">
         {isFirstRound ? (
           <Button
-            buttonType="yellow"
+            buttonType="white"
             mediaQueries="p-3"
             onClick={() => userAction("Double")}
           >
@@ -28,14 +28,14 @@ export const ActionSelector: FC<Props> = (props) => {
           <></>
         )}
         <Button
-          buttonType="blue"
+          buttonType="white"
           mediaQueries="py-3 px-6"
           onClick={() => userAction("Hit")}
         >
           Hit
         </Button>
         <Button
-          buttonType="red"
+          buttonType="white"
           mediaQueries="p-3"
           onClick={() => userAction("Stand")}
         >

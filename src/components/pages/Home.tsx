@@ -62,7 +62,7 @@ export const Home = () => {
           </select>
         </div>
         <div className="flex justify-center">
-          <Button buttonType="green" mediaQueries="p-4" onClick={()=>onClickStartGame()}>
+          <Button buttonType="blue" mediaQueries="py-3 px-5 md:py-6 md:px-8 md:text-xl" onClick={()=>onClickStartGame()}>
             {isInEn ?  "Start a game !" : "ゲームスタート！"}
           </Button>
         </div>

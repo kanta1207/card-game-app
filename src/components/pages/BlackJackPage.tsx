@@ -5,7 +5,7 @@ import { useBlackJackState } from "../../hooks/useBlackJackState";
 import { Button } from "../atoms/Button";
 import { GamePageLayout } from "../layout/GamePageLayout";
 import { ActionSelector } from "../molecules/ActionSelector";
-import { StakeHandler } from "../molecules/StakeHandler";
+import { StakeHandler } from "../organisms/StakeHandler";
 import { BlackJackTableComponent } from "../organisms/BlackJackTableComponent";
 
 export const BlackJackPage = () => {
@@ -30,20 +30,13 @@ export const BlackJackPage = () => {
   return (
     <GamePageLayout>
       {gamePhase === "betting" ? (
-        <div className="py-10">
-          <div className="text-center">
-            <p>You have ${table.userPlayer.chips} left.</p>
-            <p>How much are you going to bet?</p>
-            <p></p>
-          </div>
-          <StakeHandler onClickSubmit={onClickBetSubmit} />
-        </div>
+          <StakeHandler onClickSubmit={onClickBetSubmit} chips={table.userPlayer.chips}/>
       ) : (
         <div className="h-full xl:flex">
           <div className="">
             <BlackJackTableComponent table={table} />
           </div>
-          <div className="flex justify-center pt-3">
+          <div className="flex justify-center pt-3 font-bold">
             {isUserTurn ? (
               <>
                 <ActionSelector
