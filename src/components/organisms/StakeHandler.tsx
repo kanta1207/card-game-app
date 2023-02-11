@@ -34,12 +34,14 @@ export const StakeHandler: FC<Props> = (props) => {
               <div className="w-full flex space-x-1 justify-center items-center">
                 <ChipButton
                   colorKey="blue"
+                  mediaQueries="py-1 px-2"
                   onClick={() => onClickChangeMoney("plus", stake)}
                 >
                   ＋
                 </ChipButton>
                 <ChipButton
                   colorKey="red"
+                  mediaQueries="py-1 px-2"
                   onClick={() => onClickChangeMoney("minus", stake)}
                 >
                   ー

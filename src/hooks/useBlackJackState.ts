@@ -91,6 +91,7 @@ export const useBlackJackState = () => {
   const onClickNextGame = useCallback(()=>{
     table.prepareNextGame();
     setGamePhase("betting");
+    setIsFirstRound(true);
   },[])
 
   const changeCurrentPlayer = (tempCurrentPlayer: NonHousePlayer) => {

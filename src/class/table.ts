@@ -7,9 +7,10 @@ import { Card } from "./card";
 abstract class Table {
   abstract gameType: GameType;
   abstract deck: Deck;
-  abstract playerDeque: PlayerDeque;
   abstract userPlayer: NonHousePlayer;
   abstract house: HousePlayer | null;
+  abstract playerList : NonHousePlayer[]
+  abstract playerDeque: PlayerDeque;
   abstract currentPlayer: NonHousePlayer | null;
   abstract playerAction: (player: NonHousePlayer) => void;
   abstract getHandScore: (player: HousePlayer | NonHousePlayer) => number;
@@ -103,12 +104,13 @@ abstract class Table {
 export class BlackJackTable extends Table {
   public gameType = gameTypeBlackJack;
   public deck: Deck = new Deck(this.gameType);
-  public house: HousePlayer = new HousePlayer("Waintng for action");
-  public aiPlayer1: NonHousePlayer = new NonHousePlayer("AI1", "ai");
-  public aiPlayer2: NonHousePlayer = new NonHousePlayer("AI2", "ai");
+  public house: HousePlayer = new HousePlayer("Waintng for player's action");
+  public aiPlayer1: NonHousePlayer = new NonHousePlayer("Harry", "ai");
+  public aiPlayer2: NonHousePlayer = new NonHousePlayer("Ronald", "ai");
   public userPlayer: NonHousePlayer = new NonHousePlayer("User", "user");
   public currentPlayer: NonHousePlayer | null = null;
-  public playerDeque: PlayerDeque = new PlayerDeque();
+  public playerList : NonHousePlayer[] = [this.aiPlayer1,this.userPlayer,this.aiPlayer2];
+  public playerDeque: PlayerDeque = PlayerDeque.createPlayerDeque(this.playerList)
 
   constructor() {
     super();
@@ -116,10 +118,6 @@ export class BlackJackTable extends Table {
   }
 
   public setNewGameReady(): void {
-    this.deck = new Deck(this.gameType);
-    this.playerDeque.enqueueBack(this.aiPlayer1);
-    this.playerDeque.enqueueBack(this.userPlayer);
-    this.playerDeque.enqueueBack(this.aiPlayer2);
     this.deck.shuffleDeck();
     this.distributeCardsToPlayers();
     this.distributeCardsToHouse();
@@ -128,7 +126,6 @@ export class BlackJackTable extends Table {
 
   public playerAction = (player: NonHousePlayer): void => {
     const currentScore = this.getHandScore(player);
-    console.log(currentScore);
     const houseHand = this.getHandScore(this.house);
     if (currentScore >= 17) player.setStatus("Stand");
     else if (currentScore >= 13 && houseHand <= 6) player.setStatus("Stand");
@@ -192,9 +189,7 @@ export class BlackJackTable extends Table {
   };
 
   public allPlayerGameDecision = (): void => {
-    this.gameDecision(this.aiPlayer1);
-    this.gameDecision(this.userPlayer);
-    this.gameDecision(this.aiPlayer2);
+   for(let i = 0; i < this.playerList.length; i++)this.gameDecision(this.playerList[i])
   };
 
   // decide if the player won or lost the game
@@ -242,11 +237,12 @@ export class BlackJackTable extends Table {
   }
 
   public prepareNextGame(): void {
-    this.playerPrepareForNextGame(this.aiPlayer1);
-    this.playerPrepareForNextGame(this.aiPlayer2);
-    this.playerPrepareForNextGame(this.userPlayer);
+    for(let i = 0; i < this.playerList.length; i++){
+      this.playerPrepareForNextGame(this.playerList[i])
+    }
+    this.deck = new Deck(this.gameType);
+    this.playerDeque = PlayerDeque.createPlayerDeque(this.playerList)
     this.house = new HousePlayer("Waiting for bets");
-
     this.setNewGameReady();
   }
 }

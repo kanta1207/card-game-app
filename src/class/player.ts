@@ -30,7 +30,7 @@ abstract class Player {
 
 
 
-type HousePlayerStatus = "Waiting for bets" | "Waintng for action" | "Playing" | "Finished playing" | "Bust";
+type HousePlayerStatus = "Waiting for bets" | "Waintng for player's action" | "Playing" | "Finished playing" | "Bust";
 
 export class HousePlayer extends Player {
   // 「DEALER MUST DRAW TO 16 AND STAND ON ALL 17’S」

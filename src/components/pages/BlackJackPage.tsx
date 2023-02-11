@@ -19,7 +19,7 @@ export const BlackJackPage = () => {
     setUserName,
     onClickBetSubmit,
     userAction,
-    onClickNextGame
+    onClickNextGame,
   } = useBlackJackState();
 
   useEffect(() => {
@@ -30,9 +30,12 @@ export const BlackJackPage = () => {
   return (
     <GamePageLayout>
       {gamePhase === "betting" ? (
-          <StakeHandler onClickSubmit={onClickBetSubmit} chips={table.userPlayer.chips}/>
+        <StakeHandler
+          onClickSubmit={onClickBetSubmit}
+          chips={table.userPlayer.chips}
+        />
       ) : (
-        <div className="h-full xl:flex">
+        <div className="h-full">
           <div className="">
             <BlackJackTableComponent table={table} />
           </div>
@@ -50,10 +53,23 @@ export const BlackJackPage = () => {
               <p>House is playing...</p>
             ) : gamePhase === "result" ? (
               <>
-               <p className="font-bold">result</p>
-               <Button buttonType="white" mediaQueries="p-4" onClick={onClickNextGame}>Next Game</Button>
+                <div className="text-center p-2 space-y-1">
+                  <p className="font-bold">
+                    {table.userPlayer.status === "Win"
+                      ? "You won the game!"
+                      : table.userPlayer.status === "Lose"
+                      ? "You lost the game"
+                      : "Draw!"}
+                  </p><Button
+                  buttonType="blue"
+                  mediaQueries="p-4"
+                  onClick={onClickNextGame}
+                >
+                  Next Game
+                </Button>
+                </div>
+                
               </>
-             
             ) : (
               <></>
             )}

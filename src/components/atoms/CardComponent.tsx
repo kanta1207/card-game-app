@@ -13,8 +13,8 @@ type Props = {
 };
 
 let suitHash = {
-  "H": <BsFillSuitHeartFill color="#E91C25" />,
-  "D": <BsFillSuitDiamondFill  color="#E91C25" />,
+  "H": <BsFillSuitHeartFill color="#E91C25"/>,
+  "D": <BsFillSuitDiamondFill  color="#E91C25"/>,
   "S": <BsFillSuitSpadeFill color="#000000" />,
   "C": <BsFillSuitClubFill  color="#000000" />,
   "Joker" : <GiClown size="2rem" color="#000000"/>
@@ -23,7 +23,7 @@ let suitHash = {
 export const CardComponent: FC<Props> = (props) => {
   const { card } = props;
   return (
-    <div className="bg-[#ffffff] rounded-sm text-center p-2">
+    <div className="bg-[#ffffff] rounded-sm text-center p-2 ">
       {card.isOpen ?  <div
         className={`${
           card.suit === "H" || card.suit === "D" ? "text-[#E91C25]" : "text-[#000000]"

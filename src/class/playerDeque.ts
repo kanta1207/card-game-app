@@ -4,6 +4,12 @@ export class PlayerDeque {
     public head : NonHousePlayer | null = null;
     public tail : NonHousePlayer | null = null;
 
+    static createPlayerDeque(playerList : NonHousePlayer[]) : PlayerDeque{
+        const playerDeque = new PlayerDeque()
+        for(let i = 0; i < playerList.length; i++)playerDeque.enqueueBack(playerList[i]);
+        return playerDeque
+    }
+
     peekFront() : NonHousePlayer | null{
         if(this.head == null) return null;
         return this.head;

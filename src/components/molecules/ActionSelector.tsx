@@ -1,5 +1,6 @@
 import { FC} from "react";
 import { Button } from "../atoms/Button";
+import { ChipButton } from "../atoms/ChipButton";
 
 type Props = {
   isFirstRound: boolean;
@@ -13,41 +14,41 @@ export const ActionSelector: FC<Props> = (props) => {
   } = props;
 
   return (
-    <div className="text-center">
-      <p className="font-bold">Your turn!</p>
+    <div className="text-center space-y-2 py-2">
+       <p className="font-bold">Your turn!</p>
       <div className="flex justify-center space-x-3">
         {isFirstRound ? (
-          <Button
-            buttonType="white"
-            mediaQueries="p-3"
+          <ChipButton
+            colorKey="yellow"
+            mediaQueries="py-2 px-1 md:py-3 md:px-2"
             onClick={() => userAction("Double")}
           >
             Double
-          </Button>
+          </ChipButton>
         ) : (
           <></>
         )}
-        <Button
-          buttonType="white"
-          mediaQueries="py-3 px-6"
+        <ChipButton
+          colorKey="red"
+          mediaQueries="py-2 px-4 md:py-3 md:px-6"
           onClick={() => userAction("Hit")}
         >
           Hit
-        </Button>
-        <Button
-          buttonType="white"
-          mediaQueries="p-3"
+        </ChipButton>
+        <ChipButton
+        colorKey="blue"
+        mediaQueries="p-2 md:p-3"
           onClick={() => userAction("Stand")}
         >
           Stand
-        </Button>
-        <Button
-          buttonType="white"
-          mediaQueries="p-3"
+        </ChipButton>
+        <ChipButton
+          colorKey="green"
+          mediaQueries="py-2 px-1 md:py-3 md:px-4"
           onClick={() => userAction("Surrender")}
         >
           Surrender
-        </Button>
+        </ChipButton>
       </div>
     </div>
   );

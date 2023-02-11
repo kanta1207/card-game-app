@@ -9,7 +9,7 @@ type Props = {
 export const HousePlayerComponent: FC<Props> = (props) => {
   const { player } = props;
   return (
-    <div className="text-center outline-none p-3 shadow-lg rounded-lg shadow-[#000000]">
+    <div className="text-center outline-none p-3 md:p-8 shadow-lg rounded-lg shadow-[#000000]">
       <PlayerNameAndHand player={player}/>
       <div className="pt-1">
         <p className="font-bold">{player.status}</p>

@@ -6,13 +6,13 @@ type Props = {
   player: NonHousePlayer;
 };
 
-export const NonHousePlayerComponent: FC<Props> = (props) => {
+export const BlackJackNonHousePlayerComponent: FC<Props> = (props) => {
   const { player } = props;
   return (
-    <div className="text-center outline-none p-3 shadow-lg rounded-lg shadow-[#000000]">
+    <div className="text-center outline-none p-3 md:p-8 shadow-lg rounded-lg shadow-[#000000]">
       <PlayerNameAndHand player={player} />
       <div className="pt-1 font-bold">
-        <p>{player.status}</p>
+        <p>Status : {player.status}</p>
         <p>Chip : {player.chips}</p>
         <p>Bet : {player.bet}</p>
       </div>
