@@ -1,1 +1,1 @@
-Classic 
+Classic card game app using React, Tailwind css

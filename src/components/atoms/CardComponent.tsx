@@ -7,6 +7,7 @@ import {
 } from "react-icons/bs";
 import {GiClown} from  "react-icons/gi"
 import { Card } from "../../class/card";
+import {motion} from "framer-motion"
 
 type Props = {
   card : Card
@@ -23,7 +24,7 @@ let suitHash = {
 export const CardComponent: FC<Props> = (props) => {
   const { card } = props;
   return (
-    <div className="bg-[#ffffff] rounded-sm text-center p-2 ">
+    <motion.div className="bg-[#ffffff] rounded-sm text-center p-2" animate={{y : 0}} initial={{y : -100}}>
       {card.isOpen ?  <div
         className={`${
           card.suit === "H" || card.suit === "D" ? "text-[#E91C25]" : "text-[#000000]"
@@ -32,6 +33,6 @@ export const CardComponent: FC<Props> = (props) => {
         {suitHash[card.suit]}
         <p className="font-bold">{card.rank}</p>
       </div> : <div className="font-bold text-lg text-[#000000]">?</div>}
-    </div>
+    </motion.div>
   );
 };

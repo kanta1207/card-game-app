@@ -7,38 +7,16 @@ export const Home = () => {
   const navigate = useNavigate();
   const [userName, setUserName] = useState("");
   const [gameTypeIndex, setGameTypeIndex] = useState(0);
-  const [isInEn, setIsInEn] = useState(true);
 
   const onClickStartGame = () => {
-    navigate(gameTypeArray[gameTypeIndex].pagePath,{state : {userName,isInEn}})
-  };
-
-  const onChangeLang = (lang: string) => {
-    //languageを受け取って英語・日本語設定
-    if (!isInEn && lang === "English") setIsInEn(true);
-    else if (isInEn && lang === "Japanese") setIsInEn(false);
+    navigate(gameTypeArray[gameTypeIndex].pagePath, { state: { userName } });
   };
 
   return (
     <div className="bg-[#1D4434] h-screen text-[#ffffff]">
       <div className="space-y-6 py-[50%] sm:py-[30%] md:py-[20%] w-[40%] ml-[30%]">
         <div className="space-y-2">
-          <label className="block">English/日本語</label>
-          <select
-            name="language"
-            className="rounded-full w-full py-2 text-[#000000]"
-            onChange={(e) => onChangeLang(e.target.value)}
-          >
-            <option value="English">
-              English
-            </option>
-            <option value="Japanese">日本語</option>
-          </select>
-        </div>
-        <div className="space-y-2">
-          <label className="block">
-            {isInEn ? "Your Name" : "ユーザーネーム"}
-          </label>
+          <label className="block">Your Name</label>
           <input
             type="text"
             className="rounded-full w-full p-2 text-[#000000]"
@@ -46,24 +24,34 @@ export const Home = () => {
           />
         </div>
         <div className="space-y-2">
-          <label className="block">
-            {isInEn ? "Choose a game" : "ゲームを選ぶ"}
-          </label>
+          <label className="block">Choose a game</label>
           <select
             name="gameType"
             className="rounded-full w-full p-2 text-[#000000]"
             onChange={(e) => setGameTypeIndex(Number(e.target.value))}
           >
-            {gameTypeArray.map((gameType,index)=>(
-              <option value={index} key={gameType.gameNameEn}>
-              {isInEn ? gameType.gameNameEn : gameType.gameNameJa}
-            </option>
+            {gameTypeArray.map((gameType, index) => (
+              <option value={index} key={gameType.gameName}>
+                {gameType.gameName}
+              </option>
             ))}
           </select>
         </div>
+        <div className="text-center font-bold hover:cursor-pointer">
+          <a
+            className="underline"
+            href={gameTypeArray[gameTypeIndex].gameDescriptionUrl}
+          >
+            Do you know the rules of {gameTypeArray[gameTypeIndex].gameName} ?
+          </a>
+        </div>
         <div className="flex justify-center">
-          <Button buttonType="blue" mediaQueries="py-3 px-5 md:py-6 md:px-8 md:text-xl" onClick={()=>onClickStartGame()}>
-            {isInEn ?  "Start a game !" : "ゲームスタート！"}
+          <Button
+            buttonType="blue"
+            mediaQueries="py-3 px-5 md:py-6 md:px-8 md:text-xl"
+            onClick={() => onClickStartGame()}
+          >
+            Start a game !
           </Button>
         </div>
       </div>

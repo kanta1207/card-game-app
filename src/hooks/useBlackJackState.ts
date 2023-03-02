@@ -79,7 +79,9 @@ export const useBlackJackState = () => {
       setGamePhase("result");
     } else {
       setTimeout(() => {
+        console.log("house get a card")
         setTable(table=>{
+          
           table.house.takeACard(card);
           return table
         })

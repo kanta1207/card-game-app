@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useLocation } from "react-router-dom";
-import { BlackJackTable } from "../../class/table";
 import { useBlackJackState } from "../../hooks/useBlackJackState";
 import { Button } from "../atoms/Button";
 import { GamePageLayout } from "../layout/GamePageLayout";
@@ -10,7 +9,7 @@ import { BlackJackTableComponent } from "../organisms/BlackJackTableComponent";
 
 export const BlackJackPage = () => {
   console.log("blackJackPage");
-  const { userName, isInEn } = useLocation().state;
+  const { userName } = useLocation().state;
   const {
     table,
     gamePhase,
