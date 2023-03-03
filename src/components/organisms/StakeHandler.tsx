@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import { Button } from "../atoms/Button";
 import { ChipButton } from "../atoms/ChipButton";
+import {motion} from "framer-motion"
 
 const stakes = [5, 20, 50, 100];
 

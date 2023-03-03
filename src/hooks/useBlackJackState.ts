@@ -18,6 +18,10 @@ export const useBlackJackState = () => {
   }, []);
 
   const onClickBetSubmit = useCallback((bet: number) => {
+    if(bet === 0){
+      alert("Please make a bet");
+      return;
+    }
     if (table.userPlayer.chips >= bet) {
       setTable((table) => {
         table.userPlayer.setBet(bet);

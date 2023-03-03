@@ -19,7 +19,7 @@ export const ChipButton : FC<Props>= (props) => {
     const {children , colorKey,mediaQueries,onClick} = props
   return (
     <div className={`rounded-full py-2 px-2 hover:-translate-y-1 hover:duration-100 ${colorMap.get(colorKey)}`}>
-      <button className={`rounded-full outline-dashed border-rounded outline-8 ${colorMap.get(colorKey)} ${mediaQueries}`} onClick={onClick}>{children}</button>
+      <button className={`rounded-full xl:outline-dashed xl:border-rounded xl:outline-8 ${colorMap.get(colorKey)} ${mediaQueries}`} onClick={onClick}>{children}</button>
     </div>
   )
 }
