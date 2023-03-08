@@ -9,7 +9,7 @@ export const GamePageLayout : FC<Props> = ({children}) => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-[#1D4434] h-screen text-[#ffffff]">
+    <div className="h-screen text-[#ffffff]">
       <div className="absolute top-0 left-1">
         <AiFillHome size="1.5rem" onClick={()=>navigate("/")}/>
       </div>

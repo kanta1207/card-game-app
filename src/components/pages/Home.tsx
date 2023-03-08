@@ -13,7 +13,7 @@ export const Home = () => {
   };
 
   return (
-    <div className="bg-[#1D4434] h-screen text-[#ffffff]">
+    <div className="h-screen text-[#ffffff]">
       <div className="space-y-6 py-[50%] sm:py-[30%] md:py-[20%] w-[40%] ml-[30%]">
         <div className="space-y-2">
           <label className="block">Your Name</label>
